@@ -20,7 +20,8 @@ public class EnemyBehavior : MonoBehaviour
     public float LowHealthThreshold = 20;
     Vector3 randomOfSet ;
     public int currentTarget = 1;
-
+    public bool hasHidingSpot = true;
+    public float playerSeeDistance; 
     public float damage=1;
     public float atackInterval =2;
     float atimer=0;

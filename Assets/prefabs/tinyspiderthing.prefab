@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6245732006999774307}
+  - component: {fileID: 3347507263473506248}
+  - component: {fileID: 7238772890682350389}
   m_Layer: 0
   m_Name: tinyspiderthing
   m_TagString: Untagged
@@ -32,6 +34,62 @@ Transform:
   - {fileID: 6073899484756755365}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3347507263473506248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427874069354691386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d87b5c47c46574dab830391f1e0531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 7238772890682350389}
+  targets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  searchRadius: 1
+  searchTime: 1
+  patrolChangeTime: 5
+  MaxHealth: 100
+  Health: 0
+  LowHealthThreshold: 20
+  currentTarget: 1
+  damage: 1
+  atackInterval: 2
+  atackTime: 1
+  atackParticle: {fileID: 4871661873994912973, guid: f6571aa0ef7bd0542aec418268f70074, type: 3}
+  dieParticle: {fileID: 4275638520289331524, guid: 774fc444b42fd424282adde45e241c0b, type: 3}
+--- !u!195 &7238772890682350389
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427874069354691386}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &6034940169049056334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,19 +112,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -74,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -93,7 +151,9 @@ PrefabInstance:
       value: Spidorpidor1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -6494003088601235056, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
+    - {fileID: -6380226490545895554, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
