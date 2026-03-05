@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
@@ -105,7 +105,7 @@ public class VRSword : MonoBehaviour
         if (!isGrabbed) return;
 
         // Check if object is in damageable layer
-        if (((1 << collision.gameObject.layer) & damageableLayers) == 0) return;
+        if (((1 << collision.gameObject.layer) & damageableLayers) == 0) return;//kāpēc tur ir << vai tad nevejag <
 
         // Calculate impact velocity
         float impactVelocity = collision.relativeVelocity.magnitude;
