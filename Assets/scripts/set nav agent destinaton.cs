@@ -25,6 +25,7 @@ public class EnemyBehavior : MonoBehaviour
     public float damage=1;
     public float atackInterval =2;
     float atimer=0;
+    [SerializeField]
     bool IsAtacking;
     public float atackTime = 1;
     public GameObject atackParticle;
