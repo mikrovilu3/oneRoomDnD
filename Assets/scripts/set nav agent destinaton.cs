@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
 
-public class EnemyBehavior : MonoBehaviour
+public class EnemyBehavior : MonoBehaviour , IDamageable
 {
     public NavMeshAgent agent;
    
@@ -120,7 +120,7 @@ public class EnemyBehavior : MonoBehaviour
             }
         }
     }
-    public void Take(float damage) { 
+    public void TakeDamage(float damage) { 
 
 
         Debug.Log("tok damage");
@@ -139,4 +139,5 @@ public class EnemyBehavior : MonoBehaviour
         IsAtacking = true;
         Invoke(nameof(EndAtack), atackTime);
     }
+
 }
