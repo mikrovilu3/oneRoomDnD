@@ -116,8 +116,8 @@ public class VRSword : MonoBehaviour
         float damage = baseDamage * (impactVelocity / minVelocityForDamage);
 
         // Try to damage the object
-        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        if (damageable != null)
+        //IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+        if ((collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable)))
         {
             damageable.TakeDamage(damage);
             OnSuccessfulHit(collision);
@@ -135,7 +135,7 @@ public class VRSword : MonoBehaviour
         // Trigger haptic feedback
         if (grabInteractable.interactorsSelecting.Count > 0)
         {
-            var interactor = grabInteractable.interactorsSelecting[0];
+            var interactor = grabInteractable.interactorsSelecting[1];
             if (interactor is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
             {
                 controllerInteractor.SendHapticImpulse(hitHapticIntensity, hitHapticDuration);
