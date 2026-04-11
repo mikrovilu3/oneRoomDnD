@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c0e933697c269409e369a936ff24e7, type: 3}
+  m_Name: TerrainSettings1
+  m_EditorClassIdentifier: 
+  chunkResolution: 129
+  chunkSize: 200
+  viewDistance: 5
+  maxHeight: 160
+  minHeight: -20
+  waterLevel: 20
+  noiseSettings:
+    scale: 0.003
+    offset: {x: 0, y: 0}
+    octaves: 7
+    lacunarity: 2.1
+    persistence: 0.48
+    redistribution: 1.4
+    useDomainWarping: 1
+    warpStrength: 1.2
+  plainsGradient:
+    serializedVersion: 2
+    key0: {r: 0.19, g: 0.49, b: 0.2, a: 1}
+    key1: {r: 0.44, g: 0.61, b: 0.26, a: 1}
+    key2: {r: 0.62, g: 0.56, b: 0.36, a: 0}
+    key3: {r: 0.68, g: 0.62, b: 0.48, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 19661
+    ctime2: 39321
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  mountainGradient:
+    serializedVersion: 2
+    key0: {r: 0.4, g: 0.36, b: 0.3, a: 1}
+    key1: {r: 0.57, g: 0.53, b: 0.46, a: 1}
+    key2: {r: 0.78, g: 0.77, b: 0.75, a: 0}
+    key3: {r: 0.97, g: 0.97, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 29491
+    ctime2: 49151
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  slopeInfluence: 0.6
+  deepWaterColor: {r: 0.05, g: 0.18, b: 0.38, a: 1}
+  shallowWaterColor: {r: 0.13, g: 0.42, b: 0.6, a: 1}
+  foliagePrefabs: []
+  foliagePerChunk: 24
+  foliageMinHeight: 12
+  foliageMaxSlope: 30
+  lodThresholds: 020000000400000006000000
