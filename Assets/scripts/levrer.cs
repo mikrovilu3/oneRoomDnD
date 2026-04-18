@@ -11,6 +11,6 @@ public class levrer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector3.Normalize(grabable.position-pivot.position)+pivot.position;
+        transform.eulerAngles = Vector3.Normalize(grabable.position-pivot.position)+pivot.position;
     }
 }
