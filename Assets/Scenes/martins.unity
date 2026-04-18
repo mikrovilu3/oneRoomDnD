@@ -3211,11 +3211,11 @@ Transform:
   m_GameObject: {fileID: 739141310}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.87, y: 2.54, z: -2.86}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1573780254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &739141312
 SphereCollider:
@@ -6824,7 +6824,8 @@ Transform:
   m_LocalPosition: {x: 1.87, y: 1.54, z: -2.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 739141311}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1573780256
@@ -6841,6 +6842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabable: {fileID: 1861460504}
   pivot: {fileID: 1573780254}
+  ofset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1573884351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8926,7 +8928,7 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1573780256}
         m_TargetAssemblyTypeName: levrer, Assembly-CSharp
         m_MethodName: letGo
         m_Mode: 1
@@ -10265,5 +10267,4 @@ SceneRoots:
   - {fileID: 901938861}
   - {fileID: 956814702}
   - {fileID: 1861460504}
-  - {fileID: 739141311}
   - {fileID: 1573780254}

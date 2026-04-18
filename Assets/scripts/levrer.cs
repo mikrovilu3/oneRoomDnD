@@ -4,6 +4,8 @@ public class levrer : MonoBehaviour
 {
     public Transform grabable;
     public Transform pivot;
+    Quaternion direction;
+    public Quaternion ofset;
     public void letGo()
     {
         grabable.position=transform.position;
@@ -11,6 +13,7 @@ public class levrer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.eulerAngles = Vector3.Normalize(grabable.position-pivot.position)+pivot.position;
+        direction.eulerAngles = Vector3.Normalize(grabable.position-pivot.position)+pivot.position;
+        pivot.rotation = direction * ofset;
     }
 }
