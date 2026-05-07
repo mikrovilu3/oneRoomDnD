@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,7 +48,15 @@ public class Player_Heath : MonoBehaviour
         //Debug.Log("Before taking damage: " + health+" "+damage); // Check the health value before modification
         health =- damage;
         //Debug.Log("After taking damage: " + health+" "+damage);  // Check the health value after modification
+        if (health <= 0)
+        {
+            DIE();
+        }
 
         UpdateVisualHealth();
+    }
+    void DIE()
+    {
+
     }
 }
