@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 /// <summary>
 /// VR Main Menu — attach to a GameObject in your menu scene.
-/// The menu canvas should be World Space, positioned in front of the XR Origin spawn point.
+/// Assign buttons in the Inspector; they are wired up automatically in Start().
 /// </summary>
 public class VRMainMenu : MonoBehaviour
 {
@@ -14,20 +14,43 @@ public class VRMainMenu : MonoBehaviour
     [SerializeField] private GameObject creditsPanel;
 
     [Header("Menu Canvas")]
-    [SerializeField] private Transform menuCanvas;       // The World Space canvas
-    [SerializeField] private Transform xrOrigin;         // XR Origin transform
+    [SerializeField] private Transform menuCanvas;
+    [SerializeField] private Transform xrOrigin;
     [SerializeField] private float distanceFromPlayer = 2f;
-    [SerializeField] private float heightOffset = 0f;    // Adjust if menu appears too high/low
+    [SerializeField] private float heightOffset = 0f;
+
+    [Header("Main Menu Buttons")]
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button optionsButton;
+    [SerializeField] private Button creditsButton;
+    [SerializeField] private Button quitButton;
+
+    [Header("Options Panel Buttons")]
+    [SerializeField] private Button optionsBackButton;
+
+    [Header("Credits Panel Buttons")]
+    [SerializeField] private Button creditsBackButton;
+
+    [Header("Scene Name")]
+    [SerializeField] private string gameSceneName = "GameScene";
 
     private void Start()
     {
+        WireButtons();
         PositionMenuInFrontOfPlayer();
         ShowMainMenu();
     }
 
-    /// <summary>
-    /// Places the menu canvas in front of wherever the player is looking on start.
-    /// </summary>
+    private void WireButtons()
+    {
+        if (playButton != null) playButton.onClick.AddListener(PlayGame);
+        if (optionsButton != null) optionsButton.onClick.AddListener(ShowOptions);
+        if (creditsButton != null) creditsButton.onClick.AddListener(ShowCredits);
+        if (quitButton != null) quitButton.onClick.AddListener(QuitGame);
+        if (optionsBackButton != null) optionsBackButton.onClick.AddListener(ShowMainMenu);
+        if (creditsBackButton != null) creditsBackButton.onClick.AddListener(ShowMainMenu);
+    }
+
     private void PositionMenuInFrontOfPlayer()
     {
         if (menuCanvas == null || xrOrigin == null) return;
@@ -36,7 +59,7 @@ public class VRMainMenu : MonoBehaviour
         if (headCamera == null) return;
 
         Vector3 forward = headCamera.transform.forward;
-        forward.y = 0f; // Keep menu upright
+        forward.y = 0f;
         forward.Normalize();
 
         Vector3 menuPosition = xrOrigin.position + forward * distanceFromPlayer;
@@ -48,29 +71,15 @@ public class VRMainMenu : MonoBehaviour
 
     // --- Navigation ---
 
-    public void ShowMainMenu()
-    {
-        SetActivePanel(mainMenuPanel);
-    }
-
-    public void ShowOptions()
-    {
-        SetActivePanel(optionsPanel);
-    }
-
-    public void ShowCredits()
-    {
-        SetActivePanel(creditsPanel);
-    }
+    public void ShowMainMenu() => SetActivePanel(mainMenuPanel);
+    public void ShowOptions() => SetActivePanel(optionsPanel);
+    public void ShowCredits() => SetActivePanel(creditsPanel);
 
     // --- Core Actions ---
 
-    /// <summary>
-    /// Replace "GameScene" with the name of your actual game scene.
-    /// </summary>
     public void PlayGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(gameSceneName);
     }
 
     public void QuitGame()
@@ -89,7 +98,6 @@ public class VRMainMenu : MonoBehaviour
         if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
         if (optionsPanel != null) optionsPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
-
         if (panelToShow != null) panelToShow.SetActive(true);
     }
 }

@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// VR Pause Menu — attach to a persistent GameObject in your game scene.
 /// Pause is triggered by the Menu button on the left Quest controller.
-/// The pause canvas appears in front of the player's head when opened.
+/// Assign buttons in the Inspector; they are wired up automatically in Start().
 /// </summary>
 public class VRPauseMenu : MonoBehaviour
 {
@@ -13,20 +14,39 @@ public class VRPauseMenu : MonoBehaviour
     [SerializeField] private GameObject optionsPanel;
 
     [Header("Menu Canvas")]
-    [SerializeField] private Transform menuCanvas;          // World Space canvas
+    [SerializeField] private Transform menuCanvas;
     [SerializeField] private float distanceFromPlayer = 1.5f;
     [SerializeField] private float heightOffset = 0f;
 
+    [Header("Pause Menu Buttons")]
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button optionsButton;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button mainMenuButton;
+    [SerializeField] private Button quitButton;
+
+    [Header("Options Panel Buttons")]
+    [SerializeField] private Button optionsBackButton;
+
     public static bool IsPaused { get; private set; } = false;
 
-    // OpenXR / XR Input — Menu button on left Quest controller
     private UnityEngine.XR.InputDevice leftController;
     private bool previousMenuButtonState = false;
 
     private void Start()
     {
-        // Start with menu hidden
+        WireButtons();
         if (menuCanvas != null) menuCanvas.gameObject.SetActive(false);
+    }
+
+    private void WireButtons()
+    {
+        if (resumeButton != null) resumeButton.onClick.AddListener(ResumeGame);
+        if (optionsButton != null) optionsButton.onClick.AddListener(ShowOptions);
+        if (restartButton != null) restartButton.onClick.AddListener(RestartLevel);
+        if (mainMenuButton != null) mainMenuButton.onClick.AddListener(GoToMainMenu);
+        if (quitButton != null) quitButton.onClick.AddListener(QuitGame);
+        if (optionsBackButton != null) optionsBackButton.onClick.AddListener(ShowPauseMenu);
     }
 
     private void Update()
@@ -34,9 +54,6 @@ public class VRPauseMenu : MonoBehaviour
         PollMenuButton();
     }
 
-    /// <summary>
-    /// Polls the left controller Menu button (hamburger button on Quest).
-    /// </summary>
     private void PollMenuButton()
     {
         if (!leftController.isValid)
@@ -45,10 +62,8 @@ public class VRPauseMenu : MonoBehaviour
             return;
         }
 
-        bool menuButtonPressed = false;
-        leftController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.menuButton, out menuButtonPressed);
+        leftController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.menuButton, out bool menuButtonPressed);
 
-        // Only trigger on button down (not held)
         if (menuButtonPressed && !previousMenuButtonState)
         {
             if (IsPaused) ResumeGame();
@@ -75,7 +90,6 @@ public class VRPauseMenu : MonoBehaviour
     {
         IsPaused = true;
         Time.timeScale = 0f;
-
         PositionMenuInFrontOfPlayer();
         if (menuCanvas != null) menuCanvas.gameObject.SetActive(true);
         ShowPauseMenu();
@@ -85,7 +99,6 @@ public class VRPauseMenu : MonoBehaviour
     {
         IsPaused = false;
         Time.timeScale = 1f;
-
         if (menuCanvas != null) menuCanvas.gameObject.SetActive(false);
     }
 
@@ -96,9 +109,6 @@ public class VRPauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    /// <summary>
-    /// Replace "MainMenu" with the name of your main menu scene.
-    /// </summary>
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
@@ -118,26 +128,12 @@ public class VRPauseMenu : MonoBehaviour
 
     // --- Navigation ---
 
-    public void ShowPauseMenu()
-    {
-        SetActivePanel(pauseMenuPanel);
-    }
-
-    public void ShowOptions()
-    {
-        SetActivePanel(optionsPanel);
-    }
-
-    public void BackFromOptions()
-    {
-        ShowPauseMenu();
-    }
+    public void ShowPauseMenu() => SetActivePanel(pauseMenuPanel);
+    public void ShowOptions() => SetActivePanel(optionsPanel);
+    public void BackFromOptions() => ShowPauseMenu();
 
     // --- Helpers ---
 
-    /// <summary>
-    /// Snaps the menu canvas in front of wherever the player's head is pointing.
-    /// </summary>
     private void PositionMenuInFrontOfPlayer()
     {
         if (menuCanvas == null) return;
@@ -160,7 +156,6 @@ public class VRPauseMenu : MonoBehaviour
     {
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
         if (optionsPanel != null) optionsPanel.SetActive(false);
-
         if (panelToShow != null) panelToShow.SetActive(true);
     }
 }
