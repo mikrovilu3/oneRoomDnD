@@ -13,7 +13,7 @@ TagManager:
   - UI
   - enemy
   - obstacle
-  - post processing
+  - 
   - 
   - 
   - 
@@ -50,4 +50,3 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
-  - post process
