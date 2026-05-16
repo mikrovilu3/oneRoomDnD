@@ -135,7 +135,7 @@ public class VRSword : MonoBehaviour
         // Trigger haptic feedback
         if (grabInteractable.interactorsSelecting.Count > 0)
         {
-            var interactor = grabInteractable.interactorsSelecting[1];
+            var interactor = grabInteractable.interactorsSelecting[0];
             if (interactor is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
             {
                 controllerInteractor.SendHapticImpulse(hitHapticIntensity, hitHapticDuration);
