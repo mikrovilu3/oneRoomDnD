@@ -102,15 +102,16 @@ public class VRSword : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("colided");
         if (!isGrabbed) return;
 
         // Check if object is in damageable layer
-        if (((1 << collision.gameObject.layer) & damageableLayers) == 0) return;//kāpēc tur ir << vai tad nevejag <
+        if (((1 << collision.gameObject.layer) & damageableLayers) == 0) { Debug.Log("china velocity:" + collision.relativeVelocity.magnitude); return; }
 
         // Calculate impact velocity
         float impactVelocity = collision.relativeVelocity.magnitude;
 
-        if (impactVelocity < minVelocityForDamage) return;
+        if (impactVelocity < minVelocityForDamage) { Debug.Log("china velocity:"+impactVelocity);  return; }
 
         // Calculate damage based on velocity
         float damage = baseDamage * (impactVelocity / minVelocityForDamage);

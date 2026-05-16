@@ -54,7 +54,7 @@ public class DamageReceiver : MonoBehaviour, IDamageable
         if (logDamage)
             Debug.Log($"[DamageReceiver] '{gameObject.name}' hit — dealing {damage:F1} damage to player.");
 
-        playerHealth.Take(damage);
+        playerHealth.TakeDamage(damage);
 
         if (playerHealth.health <= 0f)
             HandleDeath();
