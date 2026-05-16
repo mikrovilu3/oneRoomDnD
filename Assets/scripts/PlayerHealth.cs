@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour , IDamageable
         }
     }
     
-    void Death() { 
+    void Death() {       
         Time.timeScale = 0.0f;
     }
     public void TakeDamage(float damage) {
@@ -48,6 +48,6 @@ public class PlayerHealth : MonoBehaviour , IDamageable
         UpdateVisualHealth();
         if (health < 1) {
             Death();
-        }
+        }    
     }
 }

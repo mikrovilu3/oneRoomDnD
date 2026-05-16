@@ -120,11 +120,17 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
             }
         }
     }
-    public void TakeDamage(float damage) { 
 
-
-        Debug.Log("tok damage");
-        Health -= damage;
+    public void TakeDamage(float damage) {
+        Invoke(nameof(Death),0.1f);
+    }
+    
+    void Death()
+    {
+        if (transform.localScale.magnitude > Math.Pow(0.1f, 10f)) {
+            transform.localScale *= 0.1f;
+            Invoke(nameof(Death),0.1f);
+        }
         
     }
     void EndAtack() {
