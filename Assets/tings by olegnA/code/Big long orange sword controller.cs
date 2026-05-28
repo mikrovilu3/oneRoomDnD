@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-// We place the interface here so Unity is guaranteed to compile it.
-public interface IDamageable
-{
-    void TakeDamage(float damage);
-}
-
 /// <summary>
 /// VR Sword with collision detection, damage dealing, and slash effects.
 /// Requires XR Interaction Toolkit.
