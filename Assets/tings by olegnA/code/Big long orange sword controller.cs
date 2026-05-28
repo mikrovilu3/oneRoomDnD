@@ -146,3 +146,10 @@ public class VRSword : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 0.1f);
     }
 }
+/// <summary>
+/// Interface for objects that can take damage
+/// </summary>
+public interface IDamageable
+{
+    public void TakeDamage(float damage);
+}
