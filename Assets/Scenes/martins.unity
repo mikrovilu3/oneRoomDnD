@@ -2273,9 +2273,9 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 0
+    spring: 100
     damper: 30
-    targetPosition: 3
+    targetPosition: -90
   m_UseMotor: 0
   m_Motor:
     targetVelocity: 0
@@ -3707,6 +3707,10 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+  m_PreviousLayer: 8
+  m_PreviousPriority: 0
+  m_TempColliders: []
+  m_InternalProfile: {fileID: 0}
 --- !u!1 &901938853
 GameObject:
   m_ObjectHideFlags: 0
@@ -6424,6 +6428,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5494123400003670417, guid: 4d69be6ba8c03bb4d8545bfae21106e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420731050283148559, guid: 4d69be6ba8c03bb4d8545bfae21106e2, type: 3}
+      propertyPath: m_MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420731050283148559, guid: 4d69be6ba8c03bb4d8545bfae21106e2, type: 3}
+      propertyPath: m_LimitLinearVelocity
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

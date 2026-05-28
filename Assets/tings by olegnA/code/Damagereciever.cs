@@ -13,7 +13,7 @@ public class DamageReceiver : MonoBehaviour, IDamageable
 
     [Header("Optional: Direct Reference")]
     [Tooltip("Drag the Player here to skip the name search entirely.")]
-    [SerializeField] private Player_Heath playerHealth;
+    [SerializeField] private PlayerHealth playerHealth;
 
     [Header("Death")]
     [SerializeField] private bool destroyOnDeath = true;
@@ -31,7 +31,7 @@ public class DamageReceiver : MonoBehaviour, IDamageable
 
             if (playerObj != null)
             {
-                playerHealth = playerObj.GetComponent<Player_Heath>();
+                playerHealth = playerObj.GetComponent<PlayerHealth>();
 
                 if (playerHealth == null)
                     Debug.LogError($"[DamageReceiver] Found '{playerObjectName}' but it has no Player_Heath component.");
@@ -54,7 +54,7 @@ public class DamageReceiver : MonoBehaviour, IDamageable
         if (logDamage)
             Debug.Log($"[DamageReceiver] '{gameObject.name}' hit — dealing {damage:F1} damage to player.");
 
-        playerHealth.Take(damage);
+        playerHealth.TakeDamage(damage);
 
         if (playerHealth.health <= 0f)
             HandleDeath();

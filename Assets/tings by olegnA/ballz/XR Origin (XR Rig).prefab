@@ -3093,11 +3093,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2730411102665261704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2136fb413b0cf204db16ac4ce592b6a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 352db84d68121b14dad9dd1bacebdde6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  health: 100
+  health: 0
   healthbar: {fileID: 1040894501185619997}
 --- !u!1 &2985635012843535946
 GameObject:

@@ -99,6 +99,7 @@ public class VRSword : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("colided");
         if (!isGrabbed) return;
 
         // Use our tracked velocity — NOT collision.relativeVelocity (that's 0 when kinematic)
