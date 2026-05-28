@@ -30,6 +30,7 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     public float atackTime = 1;
     public GameObject atackParticle;
     public GameObject dieParticle;
+    public float Deathspeed = 0.5f;
     void ReRandom()
     {
         randomOfSet = UnityEngine.Random.insideUnitSphere * searchRadius ;
@@ -127,9 +128,13 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     
     void Death()
     {
-        if (transform.localScale.magnitude > Math.Pow(0.1f, 10f)) {
-            transform.localScale *= 0.1f;
+        if (transform.localScale.magnitude > Math.Pow(0.1f, 3f)) {
+            transform.localScale *= Deathspeed;
             Invoke(nameof(Death),0.1f);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
         
     }

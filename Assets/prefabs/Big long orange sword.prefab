@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 388eb68c664c4ce479f57571797ddd20, type: 3}
       propertyPath: m_Name
-      value: untitled
+      value: Big long orange sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -68,6 +68,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 388eb68c664c4ce479f57571797ddd20, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3324710426346091669}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 388eb68c664c4ce479f57571797ddd20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6407110247170857706}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 388eb68c664c4ce479f57571797ddd20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5918607453949630444}
   m_SourcePrefab: {fileID: 100100000, guid: 388eb68c664c4ce479f57571797ddd20, type: 3}
 --- !u!1 &1672203294804588753 stripped
 GameObject:
@@ -173,6 +179,8 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
@@ -182,6 +190,7 @@ MonoBehaviour:
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
   m_MovementType: 2
+  m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -223,6 +232,10 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+  m_LimitLinearVelocity: 0
+  m_LimitAngularVelocity: 0
+  m_MaxLinearVelocityDelta: 10
+  m_MaxAngularVelocityDelta: 20
 --- !u!114 &1165028426411324668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +252,7 @@ MonoBehaviour:
   minVelocityForDamage: 2
   damageableLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 192
   slashTrail: {fileID: 0}
   trailActiveVelocity: 3
   audioSource: {fileID: 0}
@@ -269,3 +282,47 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.11409664, y: 2.6979942, z: 0.3590654}
   m_Center: {x: -0.011490524, y: 1.5978358, z: 0.0037782788}
+--- !u!65 &6407110247170857706
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672203294804588753}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18, y: 0.82, z: 1}
+  m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!136 &5918607453949630444
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672203294804588753}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11
+  m_Height: 3.72
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.1, z: 0}
