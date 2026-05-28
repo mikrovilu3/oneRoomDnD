@@ -3968,7 +3968,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 44dd8faf1463a674a92b938cac3ca335, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a34687cf152e22241991edb4a91f260a, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1029947202
 MonoBehaviour:
@@ -5889,12 +5889,17 @@ Transform:
   m_GameObject: {fileID: 1029947200}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: -5.3027077, y: 98.32845, z: 25.96352}
+  m_LocalPosition: {x: -5.3027077, y: 98.32845, z: 26.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1035727334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6513856959369702427, guid: fff52d5738be54b4e9c51168c97cdbf6, type: 3}
+  m_PrefabInstance: {fileID: 1402773940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1180178386
 Mesh:
   m_ObjectHideFlags: 0
@@ -9547,6 +9552,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6270054121805311154, guid: cade3502d990c1a49b530b460131ae5c, type: 3}
+      propertyPath: targets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270054121805311154, guid: cade3502d990c1a49b530b460131ae5c, type: 3}
+      propertyPath: 'targets.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1035727334}
     - target: {fileID: 6365044854442849623, guid: cade3502d990c1a49b530b460131ae5c, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -10210,7 +10223,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 1340682e488aab344ac4f04bf29ee3e4, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 79dcaa346b4165948a90f736645651e6, type: 2}
   m_BuildHeightMesh: 0
 --- !u!64 &2063512487
 MeshCollider:
@@ -10834,7 +10847,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 61ad890b9e6ed0b46b0c7c9c3a10ae91, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9c061ab687077124f8e456e7ad96ecef, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &2139778558
 Transform:
@@ -10887,6 +10900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabable: {fileID: 1596726698}
   pivot: {fileID: 1512850802}
+  ofset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2146850657
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,8 +2,10 @@
 using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
-/// VR Sword with collision detection, damage dealing, and slash effects
-/// Requires XR Interaction Toolkit
+/// VR Sword with collision detection, damage dealing, and slash effects.
+/// Requires XR Interaction Toolkit.
+/// Uses manual position-delta velocity tracking because XRI sets the
+/// Rigidbody to kinematic on grab, making rb.velocity / relativeVelocity always zero.
 /// </summary>
 [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
 [RequireComponent(typeof(Rigidbody))]
@@ -34,25 +36,21 @@ public class VRSword : MonoBehaviour
     private float lastSwingTime;
     private bool isGrabbed;
 
+    // Tracked manually because rb.velocity is 0 when kinematic (XRI grab)
+    private float trackedVelocity;
+
     private void Awake()
     {
         grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         rb = GetComponent<Rigidbody>();
 
-        // Setup audio
         if (audioSource == null)
-        {
             audioSource = gameObject.AddComponent<AudioSource>();
-        }
-        audioSource.spatialBlend = 1f; // 3D sound
+        audioSource.spatialBlend = 1f;
 
-        // Setup trail
         if (slashTrail != null)
-        {
             slashTrail.emitting = false;
-        }
 
-        // Subscribe to grab events
         grabInteractable.selectEntered.AddListener(OnGrabbed);
         grabInteractable.selectExited.AddListener(OnReleased);
     }
@@ -67,33 +65,32 @@ public class VRSword : MonoBehaviour
     {
         isGrabbed = true;
         previousPosition = transform.position;
+        trackedVelocity = 0f;
     }
 
     private void OnReleased(SelectExitEventArgs args)
     {
         isGrabbed = false;
+        trackedVelocity = 0f;
+
         if (slashTrail != null)
-        {
             slashTrail.emitting = false;
-        }
     }
 
     private void Update()
     {
         if (!isGrabbed) return;
 
-        // Calculate velocity
-        float velocity = (transform.position - previousPosition).magnitude / Time.deltaTime;
+        // Manual velocity tracking — works even when Rigidbody is kinematic
+        trackedVelocity = (transform.position - previousPosition).magnitude / Time.deltaTime;
         previousPosition = transform.position;
 
-        // Handle slash trail
+        // Slash trail
         if (slashTrail != null)
-        {
-            slashTrail.emitting = velocity >= trailActiveVelocity;
-        }
+            slashTrail.emitting = trackedVelocity >= trailActiveVelocity;
 
-        // Play swing sound
-        if (velocity >= trailActiveVelocity && Time.time - lastSwingTime > swingCooldown)
+        // Swing sound
+        if (trackedVelocity >= trailActiveVelocity && Time.time - lastSwingTime > swingCooldown)
         {
             PlaySwingSound();
             lastSwingTime = Time.time;
@@ -105,20 +102,16 @@ public class VRSword : MonoBehaviour
         Debug.Log("colided");
         if (!isGrabbed) return;
 
-        // Check if object is in damageable layer
-        if (((1 << collision.gameObject.layer) & damageableLayers) == 0) { Debug.Log("china velocity:" + collision.relativeVelocity.magnitude); return; }
+        // Use our tracked velocity — NOT collision.relativeVelocity (that's 0 when kinematic)
+        if (trackedVelocity < minVelocityForDamage) return;
 
-        // Calculate impact velocity
-        float impactVelocity = collision.relativeVelocity.magnitude;
+        // Check damageable layer
+        if (((1 << collision.gameObject.layer) & damageableLayers) == 0) return;
 
-        if (impactVelocity < minVelocityForDamage) { Debug.Log("china velocity:"+impactVelocity);  return; }
+        // Scale damage by how fast the sword was moving
+        float damage = baseDamage * (trackedVelocity / minVelocityForDamage);
 
-        // Calculate damage based on velocity
-        float damage = baseDamage * (impactVelocity / minVelocityForDamage);
-
-        // Try to damage the object
-        //IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        if ((collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable)))
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
             damageable.TakeDamage(damage);
             OnSuccessfulHit(collision);
@@ -127,54 +120,35 @@ public class VRSword : MonoBehaviour
 
     private void OnSuccessfulHit(Collision collision)
     {
-        // Play hit sound
         if (hitSound != null && audioSource != null)
-        {
             audioSource.PlayOneShot(hitSound);
-        }
 
-        // Trigger haptic feedback
+        // Haptics — index 0, not 1 (index 1 crashes if held in one hand)
         if (grabInteractable.interactorsSelecting.Count > 0)
         {
             var interactor = grabInteractable.interactorsSelecting[0];
             if (interactor is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
-            {
                 controllerInteractor.SendHapticImpulse(hitHapticIntensity, hitHapticDuration);
-            }
         }
 
-        // Optional: Spawn hit particles
         SpawnHitEffect(collision.contacts[0].point, collision.contacts[0].normal);
     }
 
     private void PlaySwingSound()
     {
         if (swingSound != null && audioSource != null)
-        {
             audioSource.PlayOneShot(swingSound, 0.3f);
-        }
     }
 
     private void SpawnHitEffect(Vector3 position, Vector3 normal)
     {
-        // Optional: Add particle effects here
-        // Example: Instantiate(hitParticles, position, Quaternion.LookRotation(normal));
+        // Instantiate(hitParticles, position, Quaternion.LookRotation(normal));
     }
 
-    // Gizmos for debugging
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
-
         Gizmos.color = isGrabbed ? Color.green : Color.red;
         Gizmos.DrawWireSphere(transform.position, 0.1f);
     }
-}
-
-/// <summary>
-/// Interface for objects that can take damage
-/// </summary>
-public interface IDamageable
-{
-    public void TakeDamage(float damage);
 }
