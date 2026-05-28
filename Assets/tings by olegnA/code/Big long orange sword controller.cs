@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+// We place the interface here so Unity is guaranteed to compile it.
+public interface IDamageable
+{
+    void TakeDamage(float damage);
+}
+
 /// <summary>
 /// VR Sword with collision detection, damage dealing, and slash effects.
 /// Requires XR Interaction Toolkit.
-/// Uses manual position-delta velocity tracking because XRI sets the
-/// Rigidbody to kinematic on grab, making rb.velocity / relativeVelocity always zero.
 /// </summary>
 [RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
 [RequireComponent(typeof(Rigidbody))]
@@ -36,7 +40,6 @@ public class VRSword : MonoBehaviour
     private float lastSwingTime;
     private bool isGrabbed;
 
-    // Tracked manually because rb.velocity is 0 when kinematic (XRI grab)
     private float trackedVelocity;
 
     private void Awake()
@@ -81,15 +84,12 @@ public class VRSword : MonoBehaviour
     {
         if (!isGrabbed) return;
 
-        // Manual velocity tracking — works even when Rigidbody is kinematic
         trackedVelocity = (transform.position - previousPosition).magnitude / Time.deltaTime;
         previousPosition = transform.position;
 
-        // Slash trail
         if (slashTrail != null)
             slashTrail.emitting = trackedVelocity >= trailActiveVelocity;
 
-        // Swing sound
         if (trackedVelocity >= trailActiveVelocity && Time.time - lastSwingTime > swingCooldown)
         {
             PlaySwingSound();
@@ -100,16 +100,12 @@ public class VRSword : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!isGrabbed) return;
-
-        // Use our tracked velocity — NOT collision.relativeVelocity (that's 0 when kinematic)
         if (trackedVelocity < minVelocityForDamage) return;
-
-        // Check damageable layer
         if (((1 << collision.gameObject.layer) & damageableLayers) == 0) return;
 
-        // Scale damage by how fast the sword was moving
         float damage = baseDamage * (trackedVelocity / minVelocityForDamage);
 
+        // Uses the IDamageable interface declared at the top of this file
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
             damageable.TakeDamage(damage);
@@ -122,7 +118,6 @@ public class VRSword : MonoBehaviour
         if (hitSound != null && audioSource != null)
             audioSource.PlayOneShot(hitSound);
 
-        // Haptics — index 0, not 1 (index 1 crashes if held in one hand)
         if (grabInteractable.interactorsSelecting.Count > 0)
         {
             var interactor = grabInteractable.interactorsSelecting[0];

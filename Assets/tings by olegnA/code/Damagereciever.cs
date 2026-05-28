@@ -1,10 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Attach this to any enemy or object that should deal damage to the player.
-/// Implements IDamageable so VRSword can hit it.
-/// Finds the player by GameObject name and forwards damage to Player_Heath.
-/// </summary>
 public class DamageReceiver : MonoBehaviour, IDamageable
 {
     [Header("Player Reference")]
@@ -24,7 +19,6 @@ public class DamageReceiver : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        // Only search by name if not directly assigned
         if (playerHealth == null)
         {
             GameObject playerObj = GameObject.Find(playerObjectName);
@@ -44,9 +38,6 @@ public class DamageReceiver : MonoBehaviour, IDamageable
         }
     }
 
-    /// <summary>
-    /// Called by VRSword (or anything else implementing IDamageable hits).
-    /// </summary>
     public void TakeDamage(float damage)
     {
         if (playerHealth == null) return;
@@ -64,9 +55,6 @@ public class DamageReceiver : MonoBehaviour, IDamageable
     {
         if (logDamage)
             Debug.Log($"[DamageReceiver] Player is dead.");
-
-        // Add your death logic here — e.g. reload scene, show game over screen, etc.
-        // SceneManager.LoadScene("GameOver");
 
         if (destroyOnDeath)
             Destroy(gameObject, deathDelay);
