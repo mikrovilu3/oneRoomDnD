@@ -151,7 +151,7 @@ public class VRSword : MonoBehaviour
         Gizmos.color = isGrabbed ? Color.green : Color.red;
         Gizmos.DrawWireSphere(transform.position, 0.1f);
     }
-
+}
 /// <summary>
 /// Interface for objects that can take damage
 /// </summary>
