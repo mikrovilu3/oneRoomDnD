@@ -49,7 +49,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 7238772890682350389}
-  targets: []
+  targets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   searchRadius: 1
   searchTime: 1
   patrolChangeTime: 5
@@ -65,6 +76,7 @@ MonoBehaviour:
   atackTime: 1
   atackParticle: {fileID: 4871661873994912973, guid: f6571aa0ef7bd0542aec418268f70074, type: 3}
   dieParticle: {fileID: 4275638520289331524, guid: 774fc444b42fd424282adde45e241c0b, type: 3}
+  Deathspeed: 0.9
 --- !u!195 &7238772890682350389
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -106,7 +118,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.4
+  m_Radius: 1.5
   m_Center: {x: 0, y: 1.2, z: -0.5}
 --- !u!135 &333552950697916036
 SphereCollider:
@@ -127,7 +139,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.8
+  m_Radius: 0.9
   m_Center: {x: 0, y: 0.6, z: 1.4}
 --- !u!1001 &6034940169049056334
 PrefabInstance:
@@ -778,6 +790,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7119547898138438685}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8744342557141658276}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4458080975789330086}
   m_SourcePrefab: {fileID: 100100000, guid: 9819acc92dbe6e44c8a3f123484e75ba, type: 3}
 --- !u!4 &6073899484756755365 stripped
 Transform:
@@ -811,3 +829,45 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!135 &8744342557141658276
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845757075183278367}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.4
+  m_Center: {x: 0.5, y: 1.2, z: 0}
+--- !u!135 &4458080975789330086
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845757075183278367}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.8
+  m_Center: {x: -1.4, y: 0.6, z: 0}

@@ -30,7 +30,7 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     public float atackTime = 1;
     public GameObject atackParticle;
     public GameObject dieParticle;
-    public float Deathspeed = 0.5f;
+    public float Deathspeed = 1f;
     void ReRandom()
     {
         randomOfSet = UnityEngine.Random.insideUnitSphere * searchRadius ;
@@ -129,7 +129,7 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     void Death()
     {
         if (transform.localScale.magnitude > Math.Pow(0.1f, 3f)) {
-            transform.localScale *= Deathspeed;
+            transform.localScale *= 1/Deathspeed-0.001f;
             Invoke(nameof(Death),0.1f);
         }
         else
@@ -144,8 +144,12 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     }
     void Atack()
     {
+        if (targets[0].TryGetComponent<IDamageable>(out IDamageable damageable))
+        {
+            damageable.TakeDamage(damage);
+            Debug.Log("dealt damage");
+        }
         
-        Debug.Log("dealt damage");
         
         IsAtacking = true;
         Invoke(nameof(EndAtack), atackTime);
