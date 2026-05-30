@@ -3,15 +3,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// VR Pause Menu — attach to a persistent GameObject in your game scene.
+/// VR Pause & Death Menu — attach to a persistent GameObject in your game scene.
 /// Pause is triggered by the Menu button on the left Quest controller.
-/// Assign buttons in the Inspector; they are wired up automatically in Start().
+/// Death is triggered via code by calling PlayerDied().
 /// </summary>
 public class VRPauseMenu : MonoBehaviour
 {
     [Header("Panels")]
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject deathMenuPanel; // NEW: Death Menu Panel
 
     [Header("Menu Canvas")]
     [SerializeField] private Transform menuCanvas;
@@ -28,7 +29,13 @@ public class VRPauseMenu : MonoBehaviour
     [Header("Options Panel Buttons")]
     [SerializeField] private Button optionsBackButton;
 
+    [Header("Death Menu Buttons")] // NEW: Buttons for when the player dies
+    [SerializeField] private Button deathRestartButton;
+    [SerializeField] private Button deathMainMenuButton;
+    [SerializeField] private Button deathQuitButton;
+
     public static bool IsPaused { get; private set; } = false;
+    public static bool IsDead { get; private set; } = false; // NEW: Tracks if player is dead
 
     private UnityEngine.XR.InputDevice leftController;
     private bool previousMenuButtonState = false;
@@ -41,12 +48,20 @@ public class VRPauseMenu : MonoBehaviour
 
     private void WireButtons()
     {
+        // Pause Menu
         if (resumeButton != null) resumeButton.onClick.AddListener(ResumeGame);
         if (optionsButton != null) optionsButton.onClick.AddListener(ShowOptions);
         if (restartButton != null) restartButton.onClick.AddListener(RestartLevel);
         if (mainMenuButton != null) mainMenuButton.onClick.AddListener(GoToMainMenu);
         if (quitButton != null) quitButton.onClick.AddListener(QuitGame);
+
+        // Options
         if (optionsBackButton != null) optionsBackButton.onClick.AddListener(ShowPauseMenu);
+
+        // Death Menu (Reuses the same core functions)
+        if (deathRestartButton != null) deathRestartButton.onClick.AddListener(RestartLevel);
+        if (deathMainMenuButton != null) deathMainMenuButton.onClick.AddListener(GoToMainMenu);
+        if (deathQuitButton != null) deathQuitButton.onClick.AddListener(QuitGame);
     }
 
     private void Update()
@@ -56,6 +71,9 @@ public class VRPauseMenu : MonoBehaviour
 
     private void PollMenuButton()
     {
+        // If the player is dead, completely disable the menu button so they can't unpause
+        if (IsDead) return;
+
         if (!leftController.isValid)
         {
             leftController = GetLeftController();
@@ -88,6 +106,8 @@ public class VRPauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        if (IsDead) return; // Failsafe
+
         IsPaused = true;
         Time.timeScale = 0f;
         PositionMenuInFrontOfPlayer();
@@ -97,15 +117,30 @@ public class VRPauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        if (IsDead) return; // Cannot resume if dead
+
         IsPaused = false;
         Time.timeScale = 1f;
         if (menuCanvas != null) menuCanvas.gameObject.SetActive(false);
+    }
+
+    // NEW: Trigger this from your PlayerHealth script when health drops to 0
+    public void PlayerDied()
+    {
+        IsDead = true;
+        IsPaused = true;
+        Time.timeScale = 0f;
+        PositionMenuInFrontOfPlayer();
+        if (menuCanvas != null) menuCanvas.gameObject.SetActive(true);
+
+        SetActivePanel(deathMenuPanel);
     }
 
     public void RestartLevel()
     {
         Time.timeScale = 1f;
         IsPaused = false;
+        IsDead = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -113,6 +148,7 @@ public class VRPauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         IsPaused = false;
+        IsDead = false;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -130,7 +166,6 @@ public class VRPauseMenu : MonoBehaviour
 
     public void ShowPauseMenu() => SetActivePanel(pauseMenuPanel);
     public void ShowOptions() => SetActivePanel(optionsPanel);
-    public void BackFromOptions() => ShowPauseMenu();
 
     // --- Helpers ---
 
@@ -156,6 +191,8 @@ public class VRPauseMenu : MonoBehaviour
     {
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
         if (optionsPanel != null) optionsPanel.SetActive(false);
+        if (deathMenuPanel != null) deathMenuPanel.SetActive(false); // Make sure this resets too
+
         if (panelToShow != null) panelToShow.SetActive(true);
     }
 }
