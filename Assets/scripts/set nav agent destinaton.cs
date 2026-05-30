@@ -58,7 +58,7 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
                  ray = new Ray (transform.position,targets[0].transform.position-transform.position+new Vector3(0f,1f,0f)+(UnityEngine.Random.insideUnitSphere*0.2f));
                 if (Physics.Raycast(ray, out hit, float.PositiveInfinity)&&(hit.collider != null && hit.collider.name == "player colider" || hit.collider.name == " XR Origin (XR Rig)"))
                 {
-                    if (3f > Vector3.Distance(targets[0].transform.position, transform.position)&&atimer>atackInterval) {
+                    if (1f > Vector3.Distance(targets[0].transform.position, transform.position)&&atimer>atackInterval) {
                         atimer = 0;
                         Invoke(nameof(Atack),1f);
                     }
