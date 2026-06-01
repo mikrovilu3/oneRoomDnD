@@ -12,7 +12,7 @@ public class LeverDie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (joint.angle >= 100)
+        if (joint==null || joint.angle >= 100)
         {
 
         }
