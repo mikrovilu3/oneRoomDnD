@@ -123,6 +123,7 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     }
 
     public void TakeDamage(float damage) {
+        Debug.Log("recived damage spider");
         Invoke(nameof(Death),0.1f);
     }
     
