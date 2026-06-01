@@ -129,7 +129,7 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     void Death()
     {
         if (transform.localScale.magnitude > Math.Pow(0.1f, 3f)) {
-            transform.localScale *= 1/Deathspeed-0.001f;
+            transform.localScale /= Deathspeed+0.001f;
             Invoke(nameof(Death),0.1f);
         }
         else
