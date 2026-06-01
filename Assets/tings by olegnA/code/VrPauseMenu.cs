@@ -3,16 +3,21 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// VR Pause & Death Menu — attach to a persistent GameObject in your game scene.
-/// Pause is triggered by the Menu button on the left Quest controller.
-/// Death is triggered via code by calling PlayerDied().
+/// VR Pause & Death Menu — Configurable input mapping via Inspector dropdowns.
 /// </summary>
 public class VRPauseMenu : MonoBehaviour
 {
+    public enum ControllerHand { Left, Right }
+    public enum VRButtonChoice { MenuButton, PrimaryButton, SecondaryButton, ThumbstickClick }
+
+    [Header("Input Configuration")]
+    [SerializeField] private ControllerHand targetHand = ControllerHand.Left;
+    [SerializeField] private VRButtonChoice pauseButton = VRButtonChoice.PrimaryButton; // Default to X/A button
+
     [Header("Panels")]
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject optionsPanel;
-    [SerializeField] private GameObject deathMenuPanel; // NEW: Death Menu Panel
+    [SerializeField] private GameObject deathMenuPanel;
 
     [Header("Menu Canvas")]
     [SerializeField] private Transform menuCanvas;
@@ -29,16 +34,16 @@ public class VRPauseMenu : MonoBehaviour
     [Header("Options Panel Buttons")]
     [SerializeField] private Button optionsBackButton;
 
-    [Header("Death Menu Buttons")] // NEW: Buttons for when the player dies
+    [Header("Death Menu Buttons")]
     [SerializeField] private Button deathRestartButton;
     [SerializeField] private Button deathMainMenuButton;
     [SerializeField] private Button deathQuitButton;
 
     public static bool IsPaused { get; private set; } = false;
-    public static bool IsDead { get; private set; } = false; // NEW: Tracks if player is dead
+    public static bool IsDead { get; private set; } = false;
 
-    private UnityEngine.XR.InputDevice leftController;
-    private bool previousMenuButtonState = false;
+    private UnityEngine.XR.InputDevice targetDevice;
+    private bool previousButtonState = false;
 
     private void Start()
     {
@@ -48,17 +53,14 @@ public class VRPauseMenu : MonoBehaviour
 
     private void WireButtons()
     {
-        // Pause Menu
         if (resumeButton != null) resumeButton.onClick.AddListener(ResumeGame);
         if (optionsButton != null) optionsButton.onClick.AddListener(ShowOptions);
         if (restartButton != null) restartButton.onClick.AddListener(RestartLevel);
         if (mainMenuButton != null) mainMenuButton.onClick.AddListener(GoToMainMenu);
         if (quitButton != null) quitButton.onClick.AddListener(QuitGame);
 
-        // Options
         if (optionsBackButton != null) optionsBackButton.onClick.AddListener(ShowPauseMenu);
 
-        // Death Menu (Reuses the same core functions)
         if (deathRestartButton != null) deathRestartButton.onClick.AddListener(RestartLevel);
         if (deathMainMenuButton != null) deathMainMenuButton.onClick.AddListener(GoToMainMenu);
         if (deathQuitButton != null) deathQuitButton.onClick.AddListener(QuitGame);
@@ -66,38 +68,61 @@ public class VRPauseMenu : MonoBehaviour
 
     private void Update()
     {
-        PollMenuButton();
+        PollPauseInput();
     }
 
-    private void PollMenuButton()
+    private void PollPauseInput()
     {
-        // If the player is dead, completely disable the menu button so they can't unpause
         if (IsDead) return;
 
-        if (!leftController.isValid)
+        if (!targetDevice.isValid)
         {
-            leftController = GetLeftController();
+            targetDevice = GetTargetController();
             return;
         }
 
-        leftController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.menuButton, out bool menuButtonPressed);
+        // Figure out which hardware feature usage context to query
+        UnityEngine.XR.InputFeatureUsage<bool> buttonFeature = UnityEngine.XR.CommonUsages.primaryButton;
 
-        if (menuButtonPressed && !previousMenuButtonState)
+        switch (pauseButton)
+        {
+            case VRButtonChoice.MenuButton:
+                buttonFeature = UnityEngine.XR.CommonUsages.menuButton;
+                break;
+            case VRButtonChoice.PrimaryButton:
+                buttonFeature = UnityEngine.XR.CommonUsages.primaryButton; // X on Left, A on Right
+                break;
+            case VRButtonChoice.SecondaryButton:
+                buttonFeature = UnityEngine.XR.CommonUsages.secondaryButton; // Y on Left, B on Right
+                break;
+            case VRButtonChoice.ThumbstickClick:
+                buttonFeature = UnityEngine.XR.CommonUsages.primary2DAxisClick; // Joystick click
+                break;
+        }
+
+        targetDevice.TryGetFeatureValue(buttonFeature, out bool buttonPressed);
+
+        // Check for a clean press frame (down transition)
+        if (buttonPressed && !previousButtonState)
         {
             if (IsPaused) ResumeGame();
             else PauseGame();
         }
 
-        previousMenuButtonState = menuButtonPressed;
+        previousButtonState = buttonPressed;
     }
 
-    private UnityEngine.XR.InputDevice GetLeftController()
+    private UnityEngine.XR.InputDevice GetTargetController()
     {
+        var characteristics = UnityEngine.XR.InputDeviceCharacteristics.Controller;
+
+        if (targetHand == ControllerHand.Left)
+            characteristics |= UnityEngine.XR.InputDeviceCharacteristics.Left;
+        else
+            characteristics |= UnityEngine.XR.InputDeviceCharacteristics.Right;
+
         var devices = new System.Collections.Generic.List<UnityEngine.XR.InputDevice>();
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(
-            UnityEngine.XR.InputDeviceCharacteristics.Left |
-            UnityEngine.XR.InputDeviceCharacteristics.Controller,
-            devices);
+        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(characteristics, devices);
 
         return devices.Count > 0 ? devices[0] : default;
     }
@@ -106,7 +131,7 @@ public class VRPauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        if (IsDead) return; // Failsafe
+        if (IsDead) return;
 
         IsPaused = true;
         Time.timeScale = 0f;
@@ -117,14 +142,13 @@ public class VRPauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (IsDead) return; // Cannot resume if dead
+        if (IsDead) return;
 
         IsPaused = false;
         Time.timeScale = 1f;
         if (menuCanvas != null) menuCanvas.gameObject.SetActive(false);
     }
 
-    // NEW: Trigger this from your PlayerHealth script when health drops to 0
     public void PlayerDied()
     {
         IsDead = true;
@@ -191,7 +215,7 @@ public class VRPauseMenu : MonoBehaviour
     {
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
         if (optionsPanel != null) optionsPanel.SetActive(false);
-        if (deathMenuPanel != null) deathMenuPanel.SetActive(false); // Make sure this resets too
+        if (deathMenuPanel != null) deathMenuPanel.SetActive(false);
 
         if (panelToShow != null) panelToShow.SetActive(true);
     }

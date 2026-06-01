@@ -34,7 +34,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     void Death()
     {
-        Time.timeScale = 0.0f;
+        // Search the scene for the VRPauseMenu script
+        VRPauseMenu menuSystem = FindAnyObjectByType<VRPauseMenu>();
+
+        if (menuSystem != null)
+        {
+            // Trigger the death screen panel, center it on the player, and freeze time
+            menuSystem.PlayerDied();
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            // Backup fallback just in case the menu script is missing from the scene
+            Debug.LogError("[PlayerHealth] Looked for VRPauseMenu in the scene but couldn't find it! Freezing game anyway.");
+            Time.timeScale = 0.0f;
+        }
     }
 
     public void TakeDamage(float damage)
