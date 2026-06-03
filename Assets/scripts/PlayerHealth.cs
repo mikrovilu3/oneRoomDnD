@@ -53,7 +53,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("recived damage player");
         // Subtracts the incoming damage safely
         health -= damage;
 

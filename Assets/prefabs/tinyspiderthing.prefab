@@ -76,7 +76,7 @@ MonoBehaviour:
   atackTime: 1
   atackParticle: {fileID: 4871661873994912973, guid: f6571aa0ef7bd0542aec418268f70074, type: 3}
   dieParticle: {fileID: 4275638520289331524, guid: 774fc444b42fd424282adde45e241c0b, type: 3}
-  Deathspeed: 1
+  Deathspeed: 0.9
 --- !u!195 &7238772890682350389
 NavMeshAgent:
   m_ObjectHideFlags: 0
