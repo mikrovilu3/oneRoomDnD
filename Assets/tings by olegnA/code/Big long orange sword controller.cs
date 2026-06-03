@@ -102,6 +102,7 @@ public class VRSword : MonoBehaviour
         // Uses the IDamageable interface declared at the top of this file
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
+            Debug.Log("sword damage");
             damageable.TakeDamage(damage);
             OnSuccessfulHit(collision);
         }
@@ -129,8 +130,8 @@ public class VRSword : MonoBehaviour
     }
 
     private void SpawnHitEffect(Vector3 position, Vector3 normal)
-    {
-        // Instantiate(hitParticles, position, Quaternion.LookRotation(normal));
+    {   
+        //Instantiate(hitParticles, position, Quaternion.LookRotation(normal));
     }
 
     private void OnDrawGizmos()
