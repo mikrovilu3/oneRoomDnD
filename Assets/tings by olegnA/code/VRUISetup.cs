@@ -1,104 +1,139 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 /// <summary>
-/// Drop this on any persistent GameObject in your scene.
-/// It will automatically configure all VR UI requirements at startup:
-///   1. Swap StandaloneInputModule → XRUIInputModule on the EventSystem
-///   2. Swap GraphicRaycaster → TrackedDeviceGraphicRaycaster on every World Space Canvas
-///   3. Enable UI interaction on every XRRayInteractor in the scene
-/// No Inspector wiring needed.
+/// Master VR UI Auto-Setup
+/// 1. Fixes Event System for VR
+/// 2. Fixes Canvases (Adds Tracked Raycaster & Auto-Assigns VR Headset Camera for tracking)
+/// 3. Enables UI Interaction on all Ray Interactors
+/// 4. (NEW) Automatically wires Hover & Click audio to every button.
 /// </summary>
 public class VRUISetup : MonoBehaviour
 {
-    [Header("Optional overrides — leave empty to auto-find")]
-    [Tooltip("Leave empty — all World Space Canvases are found automatically.")]
-    [SerializeField] private Canvas[] manualCanvases;
+    [Header("UI Audio Cues (Optional)")]
+    [Tooltip("Leave empty if you don't want auto-audio.")]
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private float audioVolume = 0.5f;
+
+    private AudioSource uiAudioSource;
 
     private void Awake()
     {
+        SetupAudioSource();
+
         FixEventSystem();
         FixCanvases();
         FixRayInteractors();
+
+        if (hoverSound != null || clickSound != null)
+            AutoWireAudioToButtons();
     }
 
-    // ─── 1. EventSystem ───────────────────────────────────────────────────────
+    // ─── 1. Audio Setup ───────────────────────────────────────────────────────
+
+    private void SetupAudioSource()
+    {
+        if (hoverSound == null && clickSound == null) return;
+
+        // Create a dedicated 2D audio source just for UI sounds
+        GameObject audioObj = new GameObject("UI_Audio_Source");
+        audioObj.transform.SetParent(transform);
+        uiAudioSource = audioObj.AddComponent<AudioSource>();
+        uiAudioSource.spatialBlend = 0f; // Keep it 2D so it sounds like UI
+        uiAudioSource.volume = audioVolume;
+        uiAudioSource.playOnAwake = false;
+    }
+
+    private void AutoWireAudioToButtons()
+    {
+        Button[] allButtons = FindObjectsByType<Button>(FindObjectsSortMode.None);
+
+        foreach (Button btn in allButtons)
+        {
+            // Add click sound
+            if (clickSound != null)
+            {
+                btn.onClick.AddListener(() => uiAudioSource.PlayOneShot(clickSound));
+            }
+
+            // Add hover sound via EventTrigger
+            if (hoverSound != null)
+            {
+                EventTrigger trigger = btn.gameObject.GetComponent<EventTrigger>();
+                if (trigger == null) trigger = btn.gameObject.AddComponent<EventTrigger>();
+
+                EventTrigger.Entry entry = new EventTrigger.Entry();
+                entry.eventID = EventTriggerType.PointerEnter;
+                entry.callback.AddListener((data) => { uiAudioSource.PlayOneShot(hoverSound); });
+
+                trigger.triggers.Add(entry);
+            }
+        }
+        Debug.Log($"[VRUISetup] Wired audio to {allButtons.Length} buttons.");
+    }
+
+    // ─── 2. EventSystem ───────────────────────────────────────────────────────
 
     private void FixEventSystem()
     {
-        EventSystem es = FindObjectOfType<EventSystem>();
+        EventSystem es = FindFirstObjectByType<EventSystem>();
 
         if (es == null)
         {
-            // Create one if missing
             GameObject esGO = new GameObject("EventSystem");
             es = esGO.AddComponent<EventSystem>();
-            Debug.Log("[VRUISetup] Created missing EventSystem.");
         }
 
-        // Remove flat input module if present
         StandaloneInputModule flat = es.GetComponent<StandaloneInputModule>();
-        if (flat != null)
-        {
-            Destroy(flat);
-            Debug.Log("[VRUISetup] Removed StandaloneInputModule.");
-        }
+        if (flat != null) Destroy(flat);
 
-        // Add XR module if missing
         if (es.GetComponent<XRUIInputModule>() == null)
-        {
             es.gameObject.AddComponent<XRUIInputModule>();
-            Debug.Log("[VRUISetup] Added XRUIInputModule.");
-        }
     }
 
-    // ─── 2. Canvases ─────────────────────────────────────────────────────────
+    // ─── 3. Canvases & Camera Tracking ────────────────────────────────────────
 
     private void FixCanvases()
     {
-        Canvas[] targets = (manualCanvases != null && manualCanvases.Length > 0)
-            ? manualCanvases
-            : FindObjectsOfType<Canvas>();
+        Canvas[] targets = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Camera vrCamera = Camera.main;
+
+        if (vrCamera == null)
+        {
+            Debug.LogError("[VRUISetup] No Main Camera found! UI tracking will fail. Please tag your VR Headset camera as 'MainCamera'.");
+        }
 
         foreach (Canvas canvas in targets)
         {
-            // Only World Space canvases need this
             if (canvas.renderMode != RenderMode.WorldSpace) continue;
 
-            // Remove flat raycaster
-            var flatRC = canvas.GetComponent<UnityEngine.UI.GraphicRaycaster>();
-            if (flatRC != null)
+            // FIX: Assign the VR camera so controllers know where to point
+            if (canvas.worldCamera == null && vrCamera != null)
             {
-                Destroy(flatRC);
-                Debug.Log($"[VRUISetup] Removed GraphicRaycaster from '{canvas.name}'.");
+                canvas.worldCamera = vrCamera;
+                Debug.Log($"[VRUISetup] Assigned VR Camera to '{canvas.name}'.");
             }
 
-            // Add tracked raycaster if missing
+            var flatRC = canvas.GetComponent<UnityEngine.UI.GraphicRaycaster>();
+            if (flatRC != null) Destroy(flatRC);
+
             if (canvas.GetComponent<TrackedDeviceGraphicRaycaster>() == null)
-            {
                 canvas.gameObject.AddComponent<TrackedDeviceGraphicRaycaster>();
-                Debug.Log($"[VRUISetup] Added TrackedDeviceGraphicRaycaster to '{canvas.name}'.");
-            }
         }
     }
 
-    // ─── 3. Ray Interactors ───────────────────────────────────────────────────
+    // ─── 4. Ray Interactors ───────────────────────────────────────────────────
 
     private void FixRayInteractors()
     {
-        UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor[] interactors = FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
+        XRRayInteractor[] interactors = FindObjectsByType<XRRayInteractor>(FindObjectsSortMode.None);
 
-        if (interactors.Length == 0)
-        {
-            Debug.LogWarning("[VRUISetup] No XRRayInteractors found in the scene! " +
-                             "Make sure your XR Origin has Left/Right Ray Interactor children.");
-            return;
-        }
-
-        foreach (UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor ri in interactors)
+        foreach (XRRayInteractor ri in interactors)
         {
             if (!ri.enableUIInteraction)
             {

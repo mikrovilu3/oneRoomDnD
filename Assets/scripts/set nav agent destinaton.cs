@@ -1,13 +1,10 @@
 using System;
-using Unity.Mathematics;
-
 //using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using static UnityEngine.ParticleSystem;
-using Random = UnityEngine.Random;
 
 public class EnemyBehavior : MonoBehaviour , IDamageable
 {
@@ -126,16 +123,13 @@ public class EnemyBehavior : MonoBehaviour , IDamageable
     }
 
     public void TakeDamage(float damage) {
-        Debug.Log("recived damage spider");
         Invoke(nameof(Death),0.1f);
-        agent.speed = 0;
     }
     
     void Death()
     {
-        Instantiate(dieParticle,transform.position, Quaternion.Euler(Vector3.up+new Vector3(Random.Range(-20f,20f),Random.Range(-20f, 20f),Random.Range(-20f, 20f))));
         if (transform.localScale.magnitude > Math.Pow(0.1f, 3f)) {
-            transform.localScale /= Deathspeed+0.001f;
+            transform.localScale *= 1/Deathspeed-0.001f;
             Invoke(nameof(Death),0.1f);
         }
         else
