@@ -69,9 +69,7 @@ public class SpawnAndArc : MonoBehaviour
                 float r = Random.Range(minMiss, nearMissRadius);
                 float angle = Random.Range(0f, Mathf.PI * 2f);
 
-                aimTarget = player.position
-                            + right * (r * Mathf.Cos(angle))
-                            + up * (r * Mathf.Sin(angle));
+                aimTarget = player.position+ right * (r * Mathf.Cos(angle))+ up * ((r * Mathf.Sin(angle))+2);
             }
 
             if (TryCalculateVelocity(spawnPos, aimTarget, launchAngle, out Vector3 velocity))
