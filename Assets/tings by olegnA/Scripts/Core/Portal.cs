@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Unity.XR.CoreUtils;
+using UnityEngine.XR;
 
 public class Portal : MonoBehaviour
 {
@@ -27,14 +28,19 @@ public class Portal : MonoBehaviour
 
     void Awake()
     {
+
         portalCam = GetComponentInChildren<Camera>();
 
         if (xrCamera == null)
         {
-            xrCamera = FindFirstObjectByType<Camera>();
+            xrCamera = Camera.main;
         }
 
         portalCam.enabled = false;
+        portalCam.stereoTargetEye = StereoTargetEyeMask.None;
+
+        Debug.Log($"XR Camera: {xrCamera?.name}");
+        Debug.Log($"Portal Camera Stereo Enabled: {portalCam.stereoEnabled}");
 
         screenMeshFilter =
             screen.GetComponent<MeshFilter>();
@@ -93,10 +99,22 @@ public class Portal : MonoBehaviour
             linkedPortal.transform.worldToLocalMatrix *
             xrCamera.transform.localToWorldMatrix;
 
+
+
         portalCam.transform.SetPositionAndRotation(
-            m.GetColumn(3),
-            m.rotation
-        );
+    m.GetColumn(3),
+    m.rotation
+);
+
+        // Clear any weird XR matrices
+        portalCam.ResetProjectionMatrix();
+        portalCam.ResetWorldToCameraMatrix();
+
+        Vector3 eyeOffset =
+    xrCamera.transform.right * 0.032f;
+
+        // Test both signs
+        portalCam.transform.position -= eyeOffset;
 
         portalCam.fieldOfView =
             xrCamera.fieldOfView;
@@ -104,7 +122,7 @@ public class Portal : MonoBehaviour
         portalCam.aspect =
             xrCamera.aspect;
 
-        SetNearClipPlane();
+        //SetNearClipPlane();
 
         screen.shadowCastingMode =
             UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
