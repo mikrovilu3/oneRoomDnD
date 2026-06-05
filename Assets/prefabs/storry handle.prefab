@@ -316,6 +316,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721887474750850495, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098691236501999107, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_text
+      value: "You: Do you really like this thing that much?\r\nLena: Of course! If
+        it\u2019s a gift from you I'd go to hell and back just to keep it safe!\r\nYou:
+        Well-\r\nRaven: You are majorly overstating things Lena.\r\nLena: Don\u2019t
+        listen to Raven, he\u2019 s just jealous he also didnt get a gift from big
+        brother.\r\nYou: I\u2019ll be sure to bring something to you all next time
+        I visit.\r\nRaven: Right! We will be waiting! Just-\u2026.just make sure
+        there is a next time. Allying with King Moros doesn't seem like the best
+        idea, I know that Sister Folie and Father Adnuto don\u2019t really trust
+        him, I understand that it\u2019 s to save more lives, but that guy has quite
+        the reputation of being a snake in the grass.\r\nYou: I\u2019ll keep that
+        in mind, Thank you Raven.\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098691236501999107, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_fontSize
+      value: 29.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098691236501999107, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098691236501999107, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098691236501999107, guid: 9d3a0213f220536478f848910486cae6, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

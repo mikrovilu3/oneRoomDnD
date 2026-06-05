@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;                    // swap for UnityEngine.UI if using legacy Text
+using TMPro;        // swap for UnityEngine.UI if using legacy Text
+using UnityEngine.SceneManagement;
 
 public class TextSequencer : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class TextSequencer : MonoBehaviour
 
     [Tooltip("Seconds to fade in / fade out each entry.")]
     public float fadeDuration = 0.5f;
+    public string nextScene;
 
     void Start() => StartCoroutine(RunSequence());
 
@@ -34,6 +36,7 @@ public class TextSequencer : MonoBehaviour
             yield return new WaitForSeconds(entry.holdDuration);
             yield return Fade(1f, 0f);
         }
+        SceneManager.LoadScene(nextScene);
     }
 
     IEnumerator Fade(float from, float to)

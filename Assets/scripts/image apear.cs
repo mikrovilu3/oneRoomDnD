@@ -20,20 +20,26 @@ public class ImageSequencer : MonoBehaviour
     [Tooltip("Seconds to fade in / fade out each entry.")]
     public float fadeDuration = 0.5f;
 
+    public bool loop = false;
+
     void Start() => StartCoroutine(RunSequence());
 
     IEnumerator RunSequence()
     {
         SetAlpha(0f);
 
-        foreach (ImageEntry entry in entries)
+        do
         {
-            display.sprite = entry.sprite;
+            foreach (ImageEntry entry in entries)
+            {
+                display.sprite = entry.sprite;
 
-            yield return Fade(0f, 1f);
-            yield return new WaitForSeconds(entry.holdDuration);
-            yield return Fade(1f, 0f);
+                yield return Fade(0f, 1f);
+                yield return new WaitForSeconds(entry.holdDuration);
+                yield return Fade(1f, 0f);
+            }
         }
+        while (loop);
     }
 
     IEnumerator Fade(float from, float to)

@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 602d10855dd69f341b0c25a5a7dd217a
   - enabled: 1
-    path: Assets/Scenes/FilthyMonkeysThatCantUseJujustu.unity
-    guid: 0989cc1b924a09749b3a7887a5c3436c
+    path: Assets/Scenes/cut scene.unity
+    guid: 1837871737d972e4a80a70870620b273
   - enabled: 1
     path: Assets/Scenes/THE scens.unity
     guid: 4490c3669a65fe24fa44f29b522f10e9
+  - enabled: 1
+    path: Assets/Scenes/FilthyMonkeysThatCantUseJujustu.unity
+    guid: 0989cc1b924a09749b3a7887a5c3436c
   - enabled: 1
     path: Assets/Scenes/martins.unity
     guid: 99c9720ab356a0642a771bea13969a05
