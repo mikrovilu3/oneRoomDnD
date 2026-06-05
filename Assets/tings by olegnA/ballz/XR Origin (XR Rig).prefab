@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2263631370480432548}
   - component: {fileID: 2789979903946602024}
   - component: {fileID: 2222503715867081393}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: ThumbStick_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1748890771220444235}
   - component: {fileID: 1765848422616946708}
   - component: {fileID: 7441114306499311942}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Grab Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 161747146377166960}
   - component: {fileID: 2904139068985753212}
   - component: {fileID: 5103268542567433753}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7383236270953154179}
   - component: {fileID: 8102042301166234597}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: player colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7779500269119681333}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Left InteractionAttachController] Attach Child'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3594265254820351654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Right CurveInteractionCaster] Stabilization Cast Origin'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8954724215321104126}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: XRController_Thumbstick_Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8245805483318310818}
   - component: {fileID: 2758618802282577572}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Gaze Stabilized
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3599280004339977893}
   - component: {fileID: 7307115029675425322}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Pinch_Pointer_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8601543177423012584}
   - component: {fileID: 8365434037006172176}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: health bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 4604099321814842491}
   - component: {fileID: 6497247117063283364}
   - component: {fileID: 3013422794055972213}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: TouchPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 340805220525620544}
   - component: {fileID: 7949553362041655416}
   - component: {fileID: 6425852831275871298}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Teleport Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 8406231445191855896}
   - component: {fileID: 4534189518221659632}
   - component: {fileID: 5371197195973135586}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: LineVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1988,7 +1988,7 @@ GameObject:
   - component: {fileID: 6511007532449323714}
   - component: {fileID: 353057948389162815}
   - component: {fileID: 6482922111633619046}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: ThumbStick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4987174770724140351}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2111,7 +2111,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5715483590756455926}
   - component: {fileID: 8542626777735420716}
-  m_Layer: 3
+  - component: {fileID: 352925640853769730}
+  m_Layer: 9
   m_Name: Right Controller Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,6 +2195,27 @@ MonoBehaviour:
     m_InputActionReference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualValue: 0
+--- !u!65 &352925640853769730
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777390097116725382}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07, y: 0.08, z: 0.12}
+  m_Center: {x: 0, y: -0.03, z: 0.03}
 --- !u!1 &1799922678277167639
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2228,7 @@ GameObject:
   - component: {fileID: 1052671647277192559}
   - component: {fileID: 1756006165268378777}
   - component: {fileID: 7513725229586305859}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: NearFar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2380,7 +2402,7 @@ GameObject:
   - component: {fileID: 2671364588746826234}
   - component: {fileID: 8514657603645340438}
   - component: {fileID: 7550085603540973065}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Near-Far Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2751,7 +2773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4670146053701299659}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Right InteractionAttachController] Attach Child'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2784,7 +2806,7 @@ GameObject:
   - component: {fileID: 7974973322477995153}
   - component: {fileID: 6314639286810793717}
   - component: {fileID: 2264929081766251407}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Button_Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2869,7 +2891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3398648706026422335}
   - component: {fileID: 2405125673369403967}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Right Controller Teleport Stabilized Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2925,7 +2947,7 @@ GameObject:
   - component: {fileID: 6376883929766523272}
   - component: {fileID: 3951793419311926146}
   - component: {fileID: 5116053215234153261}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3077,7 +3099,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.815, y: 1.26, z: 0.89}
+  m_Extents: {x: 0.315, y: 1.26, z: 0.39}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -3107,7 +3129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6966312276060472589}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Left Controller] Attach'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3140,7 +3162,7 @@ GameObject:
   - component: {fileID: 7880735502533498323}
   - component: {fileID: 1041358280931698382}
   - component: {fileID: 5800178089347037164}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Locomotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3204,7 +3226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4120661142674399353}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke Point Affordances
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3238,7 +3260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1369408805208231374}
   - component: {fileID: 3778432237055197486}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3325,7 +3347,7 @@ GameObject:
   - component: {fileID: 5718296601582359093}
   - component: {fileID: 552661402308130304}
   - component: {fileID: 1236631767274499168}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3412,7 +3434,7 @@ GameObject:
   - component: {fileID: 2735594881479471823}
   - component: {fileID: 1418368353921971032}
   - component: {fileID: 6593751378073110468}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3581,7 +3603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5068447020558455480}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke Point Affordances
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3616,7 +3638,7 @@ GameObject:
   - component: {fileID: 7284620401923644965}
   - component: {fileID: 5120461847935870394}
   - component: {fileID: 8703576799376990262}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: ThumbStick_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3706,7 +3728,7 @@ GameObject:
   - component: {fileID: 1119847822405883568}
   - component: {fileID: 1044293381083804275}
   - component: {fileID: 5251743025693549838}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3744,7 +3766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac216f0eb04754b1d938aac6380b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RayInteractor: {fileID: 0}
+  m_RayInteractor: {fileID: 5251743025693549838}
   m_NearFarInteractor: {fileID: 5771311584743287166}
   m_TeleportInteractor: {fileID: 1779210346067499763}
   m_TeleportMode: {fileID: -8061240218431744966, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -3884,7 +3906,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3899652135879671908}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4317,7 +4339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915193448918466852}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Right InteractionAttachController] Attach'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4352,7 +4374,7 @@ GameObject:
   - component: {fileID: 8512748864983180422}
   - component: {fileID: 4164196307170719526}
   - component: {fileID: 1402650918166981608}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4523,7 +4545,7 @@ GameObject:
   - component: {fileID: 6931036234196909634}
   - component: {fileID: 3604666706240549244}
   - component: {fileID: 4679473141773724341}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Controller_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4609,7 +4631,7 @@ GameObject:
   - component: {fileID: 6976280315774069802}
   - component: {fileID: 4367055838736359053}
   - component: {fileID: 3159066149985278593}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4694,7 +4716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4358721432457851802}
   - component: {fileID: 4461575794317060780}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Pinch_Pointer_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4783,7 +4805,7 @@ GameObject:
   - component: {fileID: 9117118943354112015}
   - component: {fileID: 3316325948113968366}
   - component: {fileID: 6514661221335062959}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Button_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4867,7 +4889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3803686143831114879}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4901,7 +4923,7 @@ GameObject:
   - component: {fileID: 7021211683753471551}
   - component: {fileID: 5681420569807094892}
   - component: {fileID: 4699053364215724396}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Button_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4987,7 +5009,7 @@ GameObject:
   - component: {fileID: 4322464226931477823}
   - component: {fileID: 3191611626909613367}
   - component: {fileID: 4180156030748097481}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Button_Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5071,7 +5093,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 53016617485476536}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: UniversalController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5109,7 +5131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7827368994170314203}
   - component: {fileID: 4396310885280899531}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Climb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5164,7 +5186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8398913794282452894}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5198,7 +5220,7 @@ GameObject:
   - component: {fileID: 4146722130836598127}
   - component: {fileID: 4331232293493020996}
   - component: {fileID: 7809523555441960954}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5272,7 +5294,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8632978916830753490}
   - component: {fileID: 6794283080403997416}
-  m_Layer: 3
+  - component: {fileID: 7640776294252986873}
+  m_Layer: 9
   m_Name: Left Controller Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5356,6 +5379,27 @@ MonoBehaviour:
     m_InputActionReference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualValue: 0
+--- !u!65 &7640776294252986873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073411221742156421}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07, y: 0.08, z: 0.12}
+  m_Center: {x: 0, y: -0.03, z: 0.03}
 --- !u!1 &5388244825373476254
 GameObject:
   m_ObjectHideFlags: 0
@@ -5367,7 +5411,7 @@ GameObject:
   - component: {fileID: 8762930048110416251}
   - component: {fileID: 1741819758684855481}
   - component: {fileID: 1431463092888941328}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5492,7 +5536,7 @@ GameObject:
   - component: {fileID: 2031093921317365377}
   - component: {fileID: 522987195278618919}
   - component: {fileID: 3444500784487751648}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5578,7 +5622,7 @@ GameObject:
   - component: {fileID: 8382332219713557870}
   - component: {fileID: 1179665021527099335}
   - component: {fileID: 1632019184452244114}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5664,7 +5708,7 @@ GameObject:
   - component: {fileID: 2527189150404967100}
   - component: {fileID: 2518788744857444723}
   - component: {fileID: 131076325976209829}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Controller_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5751,7 +5795,7 @@ GameObject:
   - component: {fileID: 7576786585709140639}
   - component: {fileID: 6993164719634172748}
   - component: {fileID: 95388202389190151}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Gaze Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6196,7 +6240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3191371950388555218}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Gaze Stabilized Attach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6227,7 +6271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7079700587202734460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Left CurveInteractionCaster] Stabilization Cast Origin'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6260,7 +6304,7 @@ GameObject:
   - component: {fileID: 2259462302435739552}
   - component: {fileID: 4661791411298052712}
   - component: {fileID: 1817595742578658738}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Button_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6346,7 +6390,7 @@ GameObject:
   - component: {fileID: 2671077259140913841}
   - component: {fileID: 4467727851264930073}
   - component: {fileID: 7957585692359211816}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Button_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6432,7 +6476,7 @@ GameObject:
   - component: {fileID: 3840455988528454310}
   - component: {fileID: 1701120159042725149}
   - component: {fileID: 6536016426255007253}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Poke Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6568,7 +6612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5605129855264150849}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Dynamic Move Provider] Combined Forward Source'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6600,7 +6644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7600830933934329664}
   - component: {fileID: 3633518326982386484}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Left Controller Teleport Stabilized Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6651,7 +6695,7 @@ GameObject:
   - component: {fileID: 3809973356388643579}
   - component: {fileID: 7081570093748504362}
   - component: {fileID: 5227257075453065693}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: TouchPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6735,7 +6779,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6315019609904987591}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: XRController_Thumbstick_Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6773,7 +6817,7 @@ GameObject:
   - component: {fileID: 6061299639684470783}
   - component: {fileID: 1425069024765783330}
   - component: {fileID: 7914665917312257949}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6872,7 +6916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2709878263299941832}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: UniversalController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6909,7 +6953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6410197455882564420}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Right Controller Stabilized Attach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6940,7 +6984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4683224661897852270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trackables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6973,7 +7017,7 @@ GameObject:
   - component: {fileID: 7721260562926358843}
   - component: {fileID: 7764040330066362761}
   - component: {fileID: 4031349537867782215}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7052,7 +7096,7 @@ GameObject:
   - component: {fileID: 8607293340292168066}
   - component: {fileID: 5775356225323125950}
   - component: {fileID: 3123797223670195910}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Left Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7068,7 +7112,7 @@ Transform:
   m_GameObject: {fileID: 7772231781990007411}
   serializedVersion: 2
   m_LocalRotation: {x: 0.02733564, y: 0.033911813, z: -0.4614145, w: 0.8861148}
-  m_LocalPosition: {x: -0.21113446, y: 0.7739603, z: 0.3854268}
+  m_LocalPosition: {x: -0.21113446, y: 0.7739603, z: 0.469}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7092,7 +7136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac216f0eb04754b1d938aac6380b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RayInteractor: {fileID: 0}
+  m_RayInteractor: {fileID: 5775356225323125950}
   m_NearFarInteractor: {fileID: 3173725040902480659}
   m_TeleportInteractor: {fileID: 8015070036800100186}
   m_TeleportMode: {fileID: 1263111715868034790, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -7557,7 +7601,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7772231781990007411}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7668,7 +7712,7 @@ GameObject:
   - component: {fileID: 6480846888041141338}
   - component: {fileID: 8423412764088882106}
   - component: {fileID: 9047977414685529577}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -7865,7 +7909,7 @@ GameObject:
   - component: {fileID: 8744477532153899568}
   - component: {fileID: 3521031658685924886}
   - component: {fileID: 5145874711174940798}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Near-Far Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8241,7 +8285,7 @@ GameObject:
   - component: {fileID: 4006023546336481074}
   - component: {fileID: 4536861966420951801}
   - component: {fileID: 4207501114184844953}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Teleport Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8947,7 +8991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6795276907177067294}
   - component: {fileID: 1373687262312898750}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Teleportation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8993,7 +9037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3817369574858047896}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Left Controller] Ray Origin'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9026,7 +9070,7 @@ GameObject:
   - component: {fileID: 3515347602152287855}
   - component: {fileID: 597571275930457981}
   - component: {fileID: 3841027212319173814}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Climb Teleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9122,7 +9166,7 @@ GameObject:
   - component: {fileID: 9059859393055886096}
   - component: {fileID: 7566582536584892685}
   - component: {fileID: 7313824855466194624}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9199,7 +9243,7 @@ GameObject:
   - component: {fileID: 3336335666845576128}
   - component: {fileID: 8880987540426721730}
   - component: {fileID: 1664635917133059396}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9213,17 +9257,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8161069308204240748}
-  m_LocalRotation: {x: -0.40426219, y: -0.692704, z: -0.59621996, w: 0.035427697}
-  m_LocalPosition: {x: 0, y: 0, z: -0.02389181}
-  m_LocalScale: {x: 0.09999999, y: 0.099999994, z: 0.1}
+  m_LocalRotation: {x: 0.21698163, y: -0.6729926, z: -0.21698163, w: 0.6729926}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0497}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8601543177423012584}
   m_Father: {fileID: 8632978916830753490}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 30}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -35.74}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.28057238, y: 0.3982808}
+  m_AnchoredPosition: {x: 0.019, y: -0.0348}
   m_SizeDelta: {x: 0.3433, y: 0.2615}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8932950069073458942
@@ -9313,7 +9357,7 @@ GameObject:
   - component: {fileID: 8857514594357701038}
   - component: {fileID: 6519173834553990349}
   - component: {fileID: 7412693062444638844}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: NearFar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9482,7 +9526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5841234401826170081}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Left InteractionAttachController] Attach'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9517,7 +9561,7 @@ GameObject:
   - component: {fileID: 803663971297352845}
   - component: {fileID: 8201167274319657387}
   - component: {fileID: 249052924086904199}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: LineVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9932,7 +9976,7 @@ GameObject:
   - component: {fileID: 7020952080818957178}
   - component: {fileID: 107252705674081720}
   - component: {fileID: 7234907950587949759}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: ThumbStick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10016,7 +10060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3280468024489584462}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Left Controller Stabilized Attach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10047,7 +10091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 814341469724447619}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: '[Climb Teleport] Attach'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
