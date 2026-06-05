@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         // Subtracts the incoming damage safely
         health -= damage;
-
+        Debug.Log("player took damage");
         UpdateVisualHealth();
         if (health < 1)
         {

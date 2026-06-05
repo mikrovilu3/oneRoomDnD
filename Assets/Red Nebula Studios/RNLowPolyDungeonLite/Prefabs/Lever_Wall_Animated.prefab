@@ -203,8 +203,8 @@ HingeJoint:
     bounciness: 0.2
     bounceMinVelocity: 0.2
     contactDistance: 0
-  m_BreakForce: 8000
-  m_BreakTorque: 5000
+  m_BreakForce: 80000
+  m_BreakTorque: 50000
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
@@ -365,8 +365,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 6.123234e-17, y: -0.0000000754979, z: 6.1232336e-17, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 726290916877247210}
   - {fileID: 2970387383242309052}
